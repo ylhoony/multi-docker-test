@@ -13,4 +13,10 @@ after_success:
   - docker build -t ylhoony/multi-nginx ./nginx
   - docker build -t ylhoony/multi-server ./server
   - docker build -t ylhoony/multi-worker ./worker
-
+  # Log in to the Docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin   
+  # Take those images and push them to docker hub
+  - docker push ylhoony/multi-client
+  - docker push ylhoony/multi-nginx
+  - docker push ylhoony/multi-server
+  - docker push ylhoony/multi-worker
